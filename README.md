@@ -540,4 +540,4 @@ This can be found in the [CHANGELOG](/CHANGELOG.md) file.
 
 ## Licence
 
-Parchment is released under the MIT license. See [LICENSE](/LICENSE.md) for details.
+Parchment is released under the MIT license. See [LICENSE](/LICENSE) for details.
