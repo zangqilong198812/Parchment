@@ -103,7 +103,7 @@ Read more: [Using the data source](/Documentation/data-source.md)
 
 ### Infinite data source
 
-Using `PagingViewControllerDataSource` means you need to know how many view controllers to display. If you’re creating something like a [calendar](), the number of view controllers can be infinitely large. In that case you can use the `PagingViewControllerInfiniteDataSource` protocol:
+Using `PagingViewControllerDataSource` means you need to know how many view controllers to display. If you’re creating something like a calendar, the number of view controllers can be infinitely large. In that case you can use the `PagingViewControllerInfiniteDataSource` protocol:
 
 ```Swift
 extension ViewController: PagingViewControllerInfiniteDataSource {
