@@ -47,7 +47,6 @@ Parchment lets you page between view controllers while showing any type of gener
   - [Selecting items](#selecting-items)
 - [Customization](#customization)
 - [Installation](#installation)
-- [Acknowledgements](#acknowledgements)
 - [Changelog](#changelog)
 - [Licence](#licence)
 
