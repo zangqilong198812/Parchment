@@ -47,7 +47,6 @@ Parchment lets you page between view controllers while showing any type of gener
   - [Selecting items](#selecting-items)
 - [Customization](#customization)
 - [Installation](#installation)
-- [Acknowledgements](#acknowledgements)
 - [Changelog](#changelog)
 - [Licence](#licence)
 
@@ -103,7 +102,7 @@ Read more: [Using the data source](/Documentation/data-source.md)
 
 ### Infinite data source
 
-Using `PagingViewControllerDataSource` means you need to know how many view controllers to display. If you’re creating something like a [calendar](), the number of view controllers can be infinitely large. In that case you can use the `PagingViewControllerInfiniteDataSource` protocol:
+Using `PagingViewControllerDataSource` means you need to know how many view controllers to display. If you’re creating something like a calendar, the number of view controllers can be infinitely large. In that case you can use the `PagingViewControllerInfiniteDataSource` protocol:
 
 ```Swift
 extension ViewController: PagingViewControllerInfiniteDataSource {
@@ -540,4 +539,4 @@ This can be found in the [CHANGELOG](/CHANGELOG.md) file.
 
 ## Licence
 
-Parchment is released under the MIT license. See [LICENSE](/LICENSE.md) for details.
+Parchment is released under the MIT license. See [LICENSE](/LICENSE) for details.
