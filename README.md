@@ -11,8 +11,6 @@
 
 <p align="center">
   <a href="https://github.com/rechsteiner/Parchment/actions/workflows/parchment.yml"><img src="https://github.com/rechsteiner/Parchment/actions/workflows/parchment.yml/badge.svg" /></a>
-  <a href="https://cocoapods.org/pods/Parchment"><img src="https://img.shields.io/cocoapods/v/Parchment.svg" /></a>
-  <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg" /></a>
 </p>
 
 <br/>
