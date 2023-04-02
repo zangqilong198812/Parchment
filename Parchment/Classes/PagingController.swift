@@ -628,11 +628,28 @@ final class PagingController: NSObject {
         }
     }
 
-    private func configureSizeCache(for _: PagingItem) {
-        if sizeDelegate != nil {
-            sizeCache.implementsSizeDelegate = true
-            sizeCache.sizeForPagingItem = { [weak self] item, selected in
-                self?.sizeDelegate?.width(for: item, isSelected: selected)
+    private func configureSizeCache(for pagingItem: PagingItem) {
+        switch options.menuItemSize {
+        case .selfSizing:
+            if #available(iOS 13.0, *), pagingItem is PageItem {
+                sizeCache.implementsSizeDelegate = true
+                sizeCache.sizeForPagingItem = { [weak self] item, selected in
+                    guard let self else { return nil }
+                    let item = item as! PageItem
+                    let hostingController = item.page.headerHostingController(self.options)
+                    let state = PageState(progress: selected ? 1 : 0, isSelected: selected)
+                    item.page.header(self.options, state, hostingController)
+                    let size = hostingController.view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+                    return size.width
+                }
+            }
+
+        case .fixed, .sizeToFit:
+            if sizeDelegate != nil  {
+                sizeCache.implementsSizeDelegate = true
+                sizeCache.sizeForPagingItem = { [weak self] item, selected in
+                    return self?.sizeDelegate?.width(for: item, isSelected: selected)
+                }
             }
         }
     }
@@ -653,8 +670,17 @@ extension PagingController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let pagingItem = visibleItems.items[indexPath.item]
+        var reuseIdentifier: String
+
+        if #available(iOS 13.0, *),
+           let item = pagingItem as? PageItem {
+            reuseIdentifier = item.page.reuseIdentifier
+        } else {
+            reuseIdentifier = String(describing: type(of: pagingItem))
+        }
+
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: String(describing: type(of: pagingItem)),
+            withReuseIdentifier: reuseIdentifier,
             for: indexPath
         ) as! PagingCell
         var selected: Bool = false
