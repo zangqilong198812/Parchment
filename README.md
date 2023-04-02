@@ -13,6 +13,10 @@
   <a href="https://github.com/rechsteiner/Parchment/actions/workflows/parchment.yml"><img src="https://github.com/rechsteiner/Parchment/actions/workflows/parchment.yml/badge.svg" /></a>
 </p>
 
+<p align="center">
+  ✨ <strong>New beta is out!</strong> Features a new and improved API for SwiftUI <a href="https://github.com/rechsteiner/Parchment/releases/tag/v4.0.0-beta">Try it now.</a>
+</p>
+
 <br/>
 
 <p align="center">
