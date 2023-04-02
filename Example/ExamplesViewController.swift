@@ -82,7 +82,7 @@ final class ExamplesViewController: UITableViewController {
 
         switch example {
         case .largeTitles:
-            let navigationController = UINavigationController(rootViewController: viewController)
+            let navigationController = NavigationController(rootViewController: viewController)
             navigationController.modalPresentationStyle = .fullScreen
             viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
                 barButtonSystemItem: .done,
@@ -129,5 +129,23 @@ final class ExamplesViewController: UITableViewController {
 
     @objc private func handleDismiss() {
         dismiss(animated: true)
+    }
+}
+
+final class NavigationController: UINavigationController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .systemBlue
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationBar.tintColor = .white
+        navigationBar.standardAppearance = appearance
+        navigationBar.compactAppearance = appearance
+        navigationBar.scrollEdgeAppearance = appearance
     }
 }
