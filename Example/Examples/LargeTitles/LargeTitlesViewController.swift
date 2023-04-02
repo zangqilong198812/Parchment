@@ -148,6 +148,7 @@ extension LargeTitlesViewController: PagingViewControllerDataSource {
         let insets = UIEdgeInsets(top: pagingViewController.options.menuItemSize.height, left: 0, bottom: 0, right: 0)
         viewController.tableView.scrollIndicatorInsets = insets
         viewController.tableView.contentInset = insets
+        viewController.tableView.contentOffset.y = -insets.top
         return viewController
     }
 
