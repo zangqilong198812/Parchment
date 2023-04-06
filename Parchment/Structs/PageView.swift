@@ -41,6 +41,10 @@ public struct PageView: View {
         options.menuBackgroundColor = .clear
         options.backgroundColor = .clear
         options.selectedBackgroundColor = .clear
+        options.selectedTextColor = .systemBlue
+        options.borderColor = .separator
+        options.indicatorColor = .systemBlue
+        options.textColor = .label
         return options
     }
 
@@ -386,6 +390,34 @@ extension PageView {
     public func borderColor(_ color: Color) -> Self {
         var view = self
         view.options.borderColor = UIColor(color)
+        return view
+    }
+
+    /// The color of the menu items when selected.
+    public func selectedColor(_ color: Color) -> Self {
+        var view = self
+        view.options.selectedTextColor = UIColor(color)
+        return view
+    }
+
+    /// The foreground color of the menu items when not selected.
+    public func foregroundColor(_ color: Color) -> Self {
+        var view = self
+        view.options.textColor = UIColor(color)
+        return view
+    }
+    
+    /// The background color for the menu items.
+    public func backgroundColor(_ color: Color) -> Self {
+        var view = self
+        view.options.backgroundColor = UIColor(color)
+        return view
+    }
+
+    /// The background color for the selected menu item.
+    public func selectedBackgroundColor(_ color: Color) -> Self {
+        var view = self
+        view.options.selectedBackgroundColor = UIColor(color)
         return view
     }
 

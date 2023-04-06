@@ -13,7 +13,7 @@ struct InterpolatedView: View {
             } content: {
                 Text("Page 1")
                     .font(.largeTitle)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
             }
             Page { state in
                 Text("Rotate")
@@ -23,7 +23,7 @@ struct InterpolatedView: View {
             } content: {
                 Text("Page 2")
                     .font(.largeTitle)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
             }
             
             Page { state in
@@ -34,7 +34,7 @@ struct InterpolatedView: View {
             } content: {
                 Text("Page 3")
                     .font(.largeTitle)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
             }
 
             Page { state in
@@ -47,19 +47,19 @@ struct InterpolatedView: View {
             } content: {
                 Text("Page 4")
                     .font(.largeTitle)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
             }
 
             Page("Normal") {
                 Text("Page 5")
                     .font(.largeTitle)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
             }
 
             Page("Normal") {
                 Text("Page 6")
                     .font(.largeTitle)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
             }
         }
         .menuItemSize(.selfSizing(estimatedWidth: 100, height: 80))

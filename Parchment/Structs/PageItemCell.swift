@@ -16,6 +16,7 @@ final class PageItemCell: PagingCell {
         self.itemSelected = selected
 
         contentConfiguration = page.header(options, state)
+        backgroundColor = selected ? options.selectedBackgroundColor : options.backgroundColor
     }
 
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
@@ -23,6 +24,11 @@ final class PageItemCell: PagingCell {
         if let attributes = layoutAttributes as? PagingCellLayoutAttributes, let options = options {
             let state = PageState(progress: attributes.progress, isSelected: itemSelected)
             contentConfiguration = page.header(options, state)
+            backgroundColor = UIColor.interpolate(
+                from: options.backgroundColor,
+                to: options.selectedBackgroundColor,
+                with: attributes.progress
+            )
         }
     }
 }

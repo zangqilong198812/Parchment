@@ -24,7 +24,11 @@ struct CustomizedView: View {
         .menuItemSize(.fixed(width: 100, height: 60))
         .menuItemSpacing(20)
         .menuItemLabelSpacing(30)
+        .selectedColor(.blue)
+        .foregroundColor(.black)
         .menuBackgroundColor(.white)
+        .backgroundColor(.white)
+        .selectedBackgroundColor(.white)
         .menuInsets(.vertical, 20)
         .menuHorizontalAlignment(.center)
         .menuPosition(.bottom)
@@ -37,6 +41,5 @@ struct CustomizedView: View {
         .indicatorColor(.blue)
         .borderOptions(.visible(height: 4))
         .borderColor(.blue.opacity(0.2))
-        .foregroundColor(.blue)
     }
 }
