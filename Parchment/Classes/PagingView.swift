@@ -60,16 +60,29 @@ open class PagingView: UIView {
 
         let heightConstraint = collectionView.heightAnchor.constraint(equalToConstant: options.menuHeight)
         heightConstraint.isActive = true
+        heightConstraint.priority = .defaultHigh
         self.heightConstraint = heightConstraint
 
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: pageView.topAnchor),
             pageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            pageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            pageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            pageView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
+
+        switch options.menuPosition {
+        case .top:
+            NSLayoutConstraint.activate([
+                collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+                pageView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+                pageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            ])
+        case .bottom:
+            NSLayoutConstraint.activate([
+                pageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+                pageView.bottomAnchor.constraint(equalTo: collectionView.topAnchor),
+                collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+            ])
+        }
     }
 }
