@@ -1,7 +1,7 @@
 import UIKit
 import SwiftUI
 
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 struct PagingControllerRepresentableView: UIViewControllerRepresentable {
     let items: [PagingItem]
     let content: ((PagingItem) -> UIViewController)?
@@ -25,7 +25,10 @@ struct PagingControllerRepresentableView: UIViewControllerRepresentable {
 
         if let items = items as? [PageItem] {
             for item in items {
-                item.page.registerCell(pagingViewController.collectionView)
+                pagingViewController.collectionView.register(
+                    PageItemCell.self,
+                    forCellWithReuseIdentifier: item.page.reuseIdentifier
+                )
             }
         }
 

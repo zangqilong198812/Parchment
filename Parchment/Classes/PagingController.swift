@@ -4,6 +4,7 @@ protocol PagingControllerSizeDelegate: AnyObject {
     func width(for: PagingItem, isSelected: Bool) -> CGFloat
 }
 
+@MainActor
 final class PagingController: NSObject {
     weak var dataSource: PagingMenuDataSource?
     weak var sizeDelegate: PagingControllerSizeDelegate?
@@ -631,15 +632,15 @@ final class PagingController: NSObject {
     private func configureSizeCache(for pagingItem: PagingItem) {
         switch options.menuItemSize {
         case .selfSizing:
-            if #available(iOS 13.0, *), pagingItem is PageItem {
+            if #available(iOS 14.0, *), pagingItem is PageItem {
                 sizeCache.implementsSizeDelegate = true
                 sizeCache.sizeForPagingItem = { [weak self] item, selected in
                     guard let self else { return nil }
                     let item = item as! PageItem
-                    let hostingController = item.page.headerHostingController(self.options)
                     let state = PageState(progress: selected ? 1 : 0, isSelected: selected)
-                    item.page.header(self.options, state, hostingController)
-                    let size = hostingController.view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+                    let configuration = item.page.header(self.options, state)
+                    let contentView = configuration.makeContentView()
+                    let size = contentView.sizeThatFits(UIView.layoutFittingCompressedSize)
                     return size.width
                 }
             }
@@ -672,7 +673,7 @@ extension PagingController: UICollectionViewDataSource {
         let pagingItem = visibleItems.items[indexPath.item]
         var reuseIdentifier: String
 
-        if #available(iOS 13.0, *),
+        if #available(iOS 14.0, *),
            let item = pagingItem as? PageItem {
             reuseIdentifier = item.page.reuseIdentifier
         } else {

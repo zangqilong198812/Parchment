@@ -1,6 +1,6 @@
 import SwiftUI
 
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 @resultBuilder
 public struct PageBuilder {
     public static func buildExpression(_ expression: Page) -> [Page] {
