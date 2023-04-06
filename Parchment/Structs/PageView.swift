@@ -195,7 +195,14 @@ extension PageView {
     /// - Returns: An instance of self
     public func didScroll(_ action: @escaping (PagingItem) -> Void) -> Self {
         var view = self
-        view.onDidScroll = action
+        if let onDidScroll = view.onDidScroll {
+            view.onDidScroll = { item in
+                onDidScroll(item)
+                action(item)
+            }
+        } else {
+            view.onDidScroll = action
+        }
         return view
     }
 
@@ -206,7 +213,14 @@ extension PageView {
     /// - Returns: An instance of self
     public func willScroll(_ action: @escaping (PagingItem) -> Void) -> Self {
         var view = self
-        view.onWillScroll = action
+        if let onWillScroll = view.onWillScroll {
+            view.onWillScroll = { item in
+                onWillScroll(item)
+                action(item)
+            }
+        } else {
+            view.onWillScroll = action
+        }
         return view
     }
 
@@ -217,7 +231,14 @@ extension PageView {
     /// - Returns: An instance of self
     public func didSelect(_ action: @escaping (PagingItem) -> Void) -> Self {
         var view = self
-        view.onDidSelect = action
+        if let onDidSelect = view.onDidSelect {
+            view.onDidSelect = { item in
+                onDidSelect(item)
+                action(item)
+            }
+        } else {
+            view.onDidSelect = action
+        }
         return view
     }
 
