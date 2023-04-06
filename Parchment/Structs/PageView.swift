@@ -41,6 +41,10 @@ public struct PageView: View {
         options.menuBackgroundColor = .clear
         options.backgroundColor = .clear
         options.selectedBackgroundColor = .clear
+        options.selectedTextColor = .systemBlue
+        options.borderColor = .separator
+        options.indicatorColor = .systemBlue
+        options.textColor = .label
         return options
     }
 
