@@ -24,12 +24,10 @@ import SwiftUI
 /// Note that the header and content parameters in both
 /// initializers are closures that return the view hierarchy for
 /// the header and body of the page, respectively.
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 public struct Page {
     let reuseIdentifier: String
-    let registerCell: (UICollectionView) -> Void
-    let headerHostingController: (PagingOptions) -> UIViewController
-    let header: (PagingOptions, PageState, UIViewController) -> Void
+    let header: (PagingOptions, PageState) -> UIContentConfiguration
     let content: () -> UIViewController
 
     /// Creates a new page with the given header and content views.
@@ -50,36 +48,28 @@ public struct Page {
     ) {
         let content = content()
 
-        let reuseIdentifier = "CellIdentifier-\(String(describing: Header.self))"
-        self.reuseIdentifier = reuseIdentifier
-
-        self.registerCell = { collectionView in
-            collectionView.register(
-                PageItemCell.self,
-                forCellWithReuseIdentifier: reuseIdentifier
-            )
+        self.reuseIdentifier = "CellIdentifier-\(String(describing: Header.self))"
+        self.header = { options, state in
+            if #available(iOS 16.0, *) {
+                return UIHostingConfiguration {
+                    PageCustomView(
+                        content: header(state),
+                        options: options,
+                        state: state
+                    )
+                }
+                .margins(.all, 0)
+            } else {
+                return PageContentConfiguration {
+                    PageCustomView(
+                        content: header(state),
+                        options: options,
+                        state: state
+                    )
+                }
+                .margins(.all, 0)
+            }
         }
-
-        self.headerHostingController = { options in
-            let state = PageState(progress: 0, isSelected: false)
-            let view = PageCustomView(
-                content: header(state),
-                options: options,
-                state: state
-            )
-            return UIHostingController(rootView: view)
-        }
-
-        self.header = { options, state, viewController in
-            let hostingController = viewController as! UIHostingController<PageCustomView<Header>>
-            let view = PageCustomView(
-                content: header(state),
-                options: options,
-                state: state
-            )
-            hostingController.rootView = view
-        }
-
         self.content = {
             UIHostingController(rootView: content)
         }
@@ -100,36 +90,31 @@ public struct Page {
         @ViewBuilder content: () -> Content
     ) {
         let content = content()
-        
-        let reuseIdentifier = "CellIdentifier-PageTitleView"
-        self.reuseIdentifier = reuseIdentifier
 
-        self.registerCell = { collectionView in
-            collectionView.register(
-                PageItemCell.self,
-                forCellWithReuseIdentifier: reuseIdentifier
-            )
+        self.reuseIdentifier = "CellIdentifier-PageTitleView"
+        self.header = { options, state in
+            if #available(iOS 16.0, *) {
+                return UIHostingConfiguration {
+                    PageTitleView(
+                        content: Text(titleKey),
+                        options: options,
+                        progress: state.progress
+                    )
+                }
+                .margins(.horizontal, options.menuItemLabelSpacing)
+                .margins(.vertical, 0)
+            } else {
+                return PageContentConfiguration {
+                    PageTitleView(
+                        content: Text(titleKey),
+                        options: options,
+                        progress: state.progress
+                    )
+                }
+                .margins(.horizontal, options.menuItemLabelSpacing)
+                .margins(.vertical, 0)
+            }
         }
-
-        self.headerHostingController = { options in
-            let header = PageTitleView(
-                content: Text(titleKey),
-                options: options,
-                progress: 0
-            )
-            return UIHostingController(rootView: header)
-        }
-
-        self.header = { options, state, viewController in
-            let hostingController = viewController as! UIHostingController<PageTitleView>
-            let header = PageTitleView(
-                content: Text(titleKey),
-                options: options,
-                progress: state.progress
-            )
-            hostingController.rootView = header
-        }
-
         self.content = {
             UIHostingController(rootView: content)
         }
@@ -151,35 +136,30 @@ public struct Page {
     ) {
         let content = content()
 
-        let reuseIdentifier = "CellIdentifier-PageTitleView"
-        self.reuseIdentifier = reuseIdentifier
-
-        self.registerCell = { collectionView in
-            collectionView.register(
-                PageItemCell.self,
-                forCellWithReuseIdentifier: reuseIdentifier
-            )
+        self.reuseIdentifier = "CellIdentifier-PageTitleView"
+        self.header = { options, state in
+            if #available(iOS 16.0, *) {
+                return UIHostingConfiguration {
+                    PageTitleView(
+                        content: Text(title),
+                        options: options,
+                        progress: state.progress
+                    )
+                }
+                .margins(.horizontal, options.menuItemLabelSpacing)
+                .margins(.vertical, 0)
+            } else {
+                return PageContentConfiguration {
+                    PageTitleView(
+                        content: Text(title),
+                        options: options,
+                        progress: state.progress
+                    )
+                }
+                .margins(.horizontal, options.menuItemLabelSpacing)
+                .margins(.vertical, 0)
+            }
         }
-
-        self.headerHostingController = { options in
-            let header = PageTitleView(
-                content: Text(title),
-                options: options,
-                progress: 0
-            )
-            return UIHostingController(rootView: header)
-        }
-
-        self.header = { options, state, viewController in
-            let hostingController = viewController as! UIHostingController<PageTitleView>
-            let header = PageTitleView(
-                content: Text(title),
-                options: options,
-                progress: state.progress
-            )
-            hostingController.rootView = header
-        }
-        
         self.content = {
             UIHostingController(rootView: content)
         }
@@ -211,7 +191,6 @@ struct PageTitleView: View {
     var body: some View {
         content
             .fixedSize()
-            .padding(.horizontal, options.menuItemLabelSpacing)
             .foregroundColor(Color(UIColor.interpolate(
                 from: options.textColor,
                 to: options.selectedTextColor,

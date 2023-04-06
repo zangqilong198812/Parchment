@@ -21,7 +21,7 @@ import UIKit
 ///     }
 /// }
 /// ```
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 public struct PageView: View {
     private let items: [PagingItem]
     private var content: ((PagingItem) -> UIViewController)?
@@ -182,7 +182,7 @@ public struct PageView: View {
     }
 }
 
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 extension PageView {
     /// Called when the user finished scrolling to a new view.
     ///
