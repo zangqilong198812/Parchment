@@ -39,6 +39,7 @@
 		3EA04A641C53BFF40054E5E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04A631C53BFF40054E5E0 /* Assets.xcassets */; };
 		3EA04A671C53BFF40054E5E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EA04A651C53BFF40054E5E0 /* LaunchScreen.storyboard */; };
 		3EFEFBF71C80B8820023C949 /* PagingIndicatorLayoutAttributesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEFBF61C80B8820023C949 /* PagingIndicatorLayoutAttributesTests.swift */; };
+		95074D0E29E05FEE003FA973 /* WheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95074D0C29E05F62003FA973 /* WheelViewController.swift */; };
 		9509917129DED89E001BAA09 /* PagingViewControllerDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9509917029DED89E001BAA09 /* PagingViewControllerDelegateTests.swift */; };
 		950ABE422437BD4D00CAD458 /* PagingNavigationOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950ABE412437BD4D00CAD458 /* PagingNavigationOrientation.swift */; };
 		950ABE452438975300CAD458 /* PageViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950ABE442438975300CAD458 /* PageViewExampleViewController.swift */; };
@@ -257,6 +258,7 @@
 		3EA04A681C53BFF40054E5E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EC0184C1C95F993005421AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		3EFEFBF61C80B8820023C949 /* PagingIndicatorLayoutAttributesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingIndicatorLayoutAttributesTests.swift; sourceTree = "<group>"; };
+		95074D0C29E05F62003FA973 /* WheelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelViewController.swift; sourceTree = "<group>"; };
 		9509917029DED89E001BAA09 /* PagingViewControllerDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingViewControllerDelegateTests.swift; sourceTree = "<group>"; };
 		950ABE412437BD4D00CAD458 /* PagingNavigationOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingNavigationOrientation.swift; sourceTree = "<group>"; };
 		950ABE442438975300CAD458 /* PageViewExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewExampleViewController.swift; sourceTree = "<group>"; };
@@ -584,6 +586,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		95074D0A29E05F62003FA973 /* Wheel */ = {
+			isa = PBXGroup;
+			children = (
+				95074D0C29E05F62003FA973 /* WheelViewController.swift */,
+			);
+			path = Wheel;
+			sourceTree = "<group>";
+		};
 		950ABE432438972400CAD458 /* PageViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,6 +632,7 @@
 				955453CD2413DC5A00923BC8 /* Calendar */,
 				953B8D332416C3C60047BBA1 /* SelfSizing */,
 				955453D42413DD7A00923BC8 /* SizeDelegate */,
+				95074D0A29E05F62003FA973 /* Wheel */,
 				955453D72413E0FA00923BC8 /* Images */,
 				955453DC2413E1A500923BC8 /* Icons */,
 				955453F12415180A00923BC8 /* Storyboard */,
@@ -1144,6 +1155,7 @@
 				955453E52413E37700923BC8 /* TableViewController.swift in Sources */,
 				955453D02413DCB700923BC8 /* CalendarViewController.swift in Sources */,
 				955453D32413DCB700923BC8 /* DateFormatters.swift in Sources */,
+				95074D0E29E05FEE003FA973 /* WheelViewController.swift in Sources */,
 				3EA04A5D1C53BFF40054E5E0 /* AppDelegate.swift in Sources */,
 				955453DE2413E1B200923BC8 /* IconPagingCell.swift in Sources */,
 				3E2AAD201CA81EA20044AAA5 /* ContentViewController.swift in Sources */,
