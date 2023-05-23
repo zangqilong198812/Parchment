@@ -22,6 +22,8 @@ struct PagingControllerRepresentableView: UIViewControllerRepresentable {
         let pagingViewController = PagingViewController(options: options)
         pagingViewController.dataSource = context.coordinator
         pagingViewController.delegate = context.coordinator
+        pagingViewController.indicatorClass = PagingHostingIndicatorView.self
+        pagingViewController.collectionView.clipsToBounds = false
 
         if let items = items as? [PageItem] {
             for item in items {
