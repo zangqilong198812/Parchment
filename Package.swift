@@ -10,7 +10,10 @@ let package = Package(
     targets: [
         .target(
             name: "Parchment",
-            path: "Parchment"
+            path: "Parchment",
+            resources: [
+                .copy("PrivacyInfo.xcprivacy")
+            ]
         )
     ]
 )
