@@ -126,6 +126,7 @@
 		95D790182299D57A00E6EE7C /* PagingMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D790172299D57A00E6EE7C /* PagingMenuDelegate.swift */; };
 		95E4BA701FF15E84008871A3 /* PagingViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4BA6F1FF15E84008871A3 /* PagingViewControllerDataSource.swift */; };
 		95E4BA721FF15EFE008871A3 /* PagingFiniteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4BA711FF15EFE008871A3 /* PagingFiniteDataSource.swift */; };
+		95ED82642B5056AC0055227B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 95ED82632B5056AC0055227B /* PrivacyInfo.xcprivacy */; };
 		95F5660F2128707900F2A75E /* PagingMenuItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1BE1D211E409400E86B72 /* PagingMenuItemSource.swift */; };
 		95F83D6426237D2B003B728F /* SelectedIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F83D6326237D2B003B728F /* SelectedIndexView.swift */; };
 		95F83D6C26237DA4003B728F /* LifecycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F83D6B26237DA4003B728F /* LifecycleView.swift */; };
@@ -326,6 +327,7 @@
 		95D790172299D57A00E6EE7C /* PagingMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingMenuDelegate.swift; sourceTree = "<group>"; };
 		95E4BA6F1FF15E84008871A3 /* PagingViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingViewControllerDataSource.swift; sourceTree = "<group>"; };
 		95E4BA711FF15EFE008871A3 /* PagingFiniteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingFiniteDataSource.swift; sourceTree = "<group>"; };
+		95ED82632B5056AC0055227B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		95F83D6326237D2B003B728F /* SelectedIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedIndexView.swift; sourceTree = "<group>"; };
 		95F83D6B26237DA4003B728F /* LifecycleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifecycleView.swift; sourceTree = "<group>"; };
 		95F83D822623804F003B728F /* ChangeItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeItems.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 			children = (
 				3E49C71D1C8F5ABD006269DD /* Parchment.h */,
 				3EC0184C1C95F993005421AD /* Info.plist */,
+				95ED82632B5056AC0055227B /* PrivacyInfo.xcprivacy */,
 				3E4090A31C88BD1700800E22 /* Classes */,
 				3E4090951C88BC9100800E22 /* Enums */,
 				3EA04A701C53C0640054E5E0 /* Extensions */,
@@ -940,6 +943,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95ED82642B5056AC0055227B /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
