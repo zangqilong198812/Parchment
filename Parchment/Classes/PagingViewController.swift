@@ -266,7 +266,7 @@ open class PagingViewController:
 
     /// An instance that stores all the customization so that it's
     /// easier to share between other classes.
-    public private(set) var options: PagingOptions {
+    public internal(set) var options: PagingOptions {
         didSet {
             if options.menuLayoutClass != oldValue.menuLayoutClass {
                 let layout = createLayout(layout: options.menuLayoutClass.self)

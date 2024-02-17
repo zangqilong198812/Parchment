@@ -54,6 +54,9 @@ struct PagingControllerRepresentableView: UIViewControllerRepresentable {
         if pagingViewController.dataSource == nil {
             pagingViewController.dataSource = context.coordinator
         }
+        
+        pagingViewController.options = options
+        pagingViewController.indicatorClass = PagingHostingIndicatorView.self
 
         // We only want to reload the content views when the items have actually
         // changed. For items that are added, a new view controller instance will
