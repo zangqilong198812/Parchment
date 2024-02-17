@@ -27,8 +27,10 @@ import SwiftUI
 @available(iOS 14.0, *)
 public struct Page {
     let reuseIdentifier: String
+    let pageIdentifier: String?
     let header: (PagingOptions, PageState) -> UIContentConfiguration
     let content: () -> UIViewController
+    let update: (UIViewController) -> Void
 
     /// Creates a new page with the given header and content views.
     ///
@@ -49,6 +51,8 @@ public struct Page {
         let content = content()
 
         self.reuseIdentifier = "CellIdentifier-\(String(describing: Header.self))"
+        self.pageIdentifier = nil
+
         self.header = { options, state in
             if #available(iOS 16.0, *) {
                 return UIHostingConfiguration {
@@ -72,6 +76,63 @@ public struct Page {
         }
         self.content = {
             UIHostingController(rootView: content)
+        }
+        self.update = { viewController in
+            let hostingController = viewController as! UIHostingController<Content>
+            hostingController.rootView = content
+        }
+    }
+
+    /// Creates a new page with the given header and content views.
+    ///
+    /// - Parameters:   
+    ///   - id: A unique identifier for this page.
+    ///   - header: A closure that takes a `PageState` instance as
+    ///     input and returns a `View` that represents the header view
+    ///     for the page. The `PageState` instance will be updated as
+    ///     the page is scrolled, allowing the header view to adjust
+    ///     its appearance accordingly.
+    ///   - content: A closure that returns a `View` that represents
+    ///     the content view for the page.
+    ///
+    ///    - Returns: A new `Page` instance with the given header and content views.
+    public init<Header: View, Content: View, Id: LosslessStringConvertible>(
+        id: Id,
+        @ViewBuilder header: @escaping (PageState) -> Header,
+        @ViewBuilder content: () -> Content
+    ) {
+        let content = content()
+
+        self.reuseIdentifier = "CellIdentifier-\(String(describing: Header.self))"
+        self.pageIdentifier = id.description
+
+        self.header = { options, state in
+            if #available(iOS 16.0, *) {
+                return UIHostingConfiguration {
+                    PageCustomView(
+                        content: header(state),
+                        options: options,
+                        state: state
+                    )
+                }
+                .margins(.all, 0)
+            } else {
+                return PageContentConfiguration {
+                    PageCustomView(
+                        content: header(state),
+                        options: options,
+                        state: state
+                    )
+                }
+                .margins(.all, 0)
+            }
+        }
+        self.content = {
+            UIHostingController(rootView: content)
+        }
+        self.update = { viewController in
+            let hostingController = viewController as! UIHostingController<Content>
+            hostingController.rootView = content
         }
     }
 
@@ -92,6 +153,8 @@ public struct Page {
         let content = content()
 
         self.reuseIdentifier = "CellIdentifier-PageTitleView"
+        self.pageIdentifier = "PageIdentifier-\(titleKey)"
+
         self.header = { options, state in
             if #available(iOS 16.0, *) {
                 return UIHostingConfiguration {
@@ -117,6 +180,10 @@ public struct Page {
         }
         self.content = {
             UIHostingController(rootView: content)
+        }
+        self.update = { viewController in
+            let hostingController = viewController as! UIHostingController<Content>
+            hostingController.rootView = content
         }
     }
 
@@ -137,6 +204,8 @@ public struct Page {
         let content = content()
 
         self.reuseIdentifier = "CellIdentifier-PageTitleView"
+        self.pageIdentifier = "PageIdentifier-\(title)"
+
         self.header = { options, state in
             if #available(iOS 16.0, *) {
                 return UIHostingConfiguration {
@@ -162,6 +231,10 @@ public struct Page {
         }
         self.content = {
             UIHostingController(rootView: content)
+        }
+        self.update = { viewController in
+            let hostingController = viewController as! UIHostingController<Content>
+            hostingController.rootView = content
         }
     }
 }

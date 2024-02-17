@@ -72,9 +72,8 @@ public struct PageView: View {
         self.items = content()
             .enumerated()
             .map { (index, page) in
-                // TODO: What should we use as the identifier?
                 PageItem(
-                    identifier: index,
+                    identifier: page.pageIdentifier?.hashValue ?? index,
                     index: index,
                     page: page
                 )
