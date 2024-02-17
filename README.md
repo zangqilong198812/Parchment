@@ -46,7 +46,6 @@ Parchment lets you page between view controllers while showing any type of gener
   - [Reloading data](#reloading-data)
   - [Delegate](#delegate)
   - [Size delegate](#size-delegate)
-  - [Selecting items](#selecting-items)
 - [Customization](#customization)
 - [Installation](#installation)
 - [Changelog](#changelog)
