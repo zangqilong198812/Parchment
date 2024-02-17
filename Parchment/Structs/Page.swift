@@ -174,6 +174,7 @@ struct PageCustomView<Content: View>: View {
 
     var body: some View {
         content
+            .fixedSize(horizontal: true, vertical: false)
             .foregroundColor(Color(UIColor.interpolate(
                 from: options.textColor,
                 to: options.selectedTextColor,
@@ -190,7 +191,7 @@ struct PageTitleView: View {
 
     var body: some View {
         content
-            .fixedSize()
+            .fixedSize(horizontal: true, vertical: false)
             .foregroundColor(Color(UIColor.interpolate(
                 from: options.textColor,
                 to: options.selectedTextColor,
