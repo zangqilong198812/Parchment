@@ -48,7 +48,6 @@ Parchment lets you page between view controllers while showing any type of gener
     - [Reloading data](#reloading-data)
     - [Delegate](#delegate)
     - [Size delegate](#size-delegate)
-    - [Selecting items](#selecting-items)
     - [Customization](#customization)
 - [Options](#options)
 - [Installation](#installation)
@@ -613,7 +612,7 @@ Parchment will be compatible with the lastest public release of Swift.
 
 ### Requirements
 
-- iOS 11.0+
+- iOS 12.0+
 - Xcode 14.0+
 
 ### CocoaPods

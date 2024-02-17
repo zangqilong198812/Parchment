@@ -2,6 +2,12 @@
 
 `Parchment` adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.3.0](https://github.com/rechsteiner/Parchment/compare/v3.2.1...v3.3.0) - 2024-02-17
+
+- Set minimum deployment target to iOS 12 #699
+- Add privacy manifest file #695
+- Update Swift version to 5.9 #700
+
 ## [3.2.1](https://github.com/rechsteiner/Parchment/compare/v3.2.0...v3.2.1) - 2023-03-07
 
 ### Fixes
