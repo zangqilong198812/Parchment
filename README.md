@@ -620,7 +620,7 @@ Parchment will be compatible with the lastest public release of Swift.
 Parchment is available through [CocoaPods](https://cocoapods.org). To install it, add the following to your `Podfile`:
 
 ```
-pod 'Parchment', '~> 3.4'
+pod 'Parchment', '~> 4.0'
 ```
 
 ### Swift Package Manager
@@ -628,7 +628,7 @@ pod 'Parchment', '~> 3.4'
 Parchment is available through [Swift Package Manager](https://swift.org/package-manager/). Add Parchment as a dependency to your `Package.swift`:
 
 ```Swift
-.package(url: "https://github.com/rechsteiner/Parchment", from: "3.4.0")
+.package(url: "https://github.com/rechsteiner/Parchment", from: "4.0.0")
 ```
 
 ### Carthage
@@ -636,7 +636,7 @@ Parchment is available through [Swift Package Manager](https://swift.org/package
 Parchment also supports [Carthage](https://github.com/Carthage/Carthage). To install it, add the following to your `Cartfile`:
 
 ```
-github "rechsteiner/Parchment" ~> 3.4
+github "rechsteiner/Parchment" ~> 4.0
 ```
 
 See [this guide](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) for more details on using Carthage.
