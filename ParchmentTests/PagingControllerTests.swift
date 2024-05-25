@@ -1,6 +1,6 @@
 import Foundation
-@testable import Parchment
 import XCTest
+@testable import Parchment
 
 final class PagingControllerTests: XCTestCase {
     static let ItemSize: CGFloat = 50
@@ -13,6 +13,7 @@ final class PagingControllerTests: XCTestCase {
     var sizeDelegate: MockPagingControllerSizeDelegate?
     var pagingController: PagingController!
 
+    @MainActor
     override func setUp() {
         options = PagingOptions()
         options.selectedScrollPosition = .left
@@ -49,6 +50,7 @@ final class PagingControllerTests: XCTestCase {
 
     // MARK: - Content scrolled
 
+    @MainActor
     func testContentScrolledFromSelectedProgressPositive() {
         // Select the first item.
         pagingController.select(pagingItem: Item(index: 3), animated: false)
@@ -80,10 +82,11 @@ final class PagingControllerTests: XCTestCase {
             )),
             .collectionViewLayout(.invalidateLayoutWithContext(
                 invalidateSizes: false
-      )),
+            )),
         ])
     }
 
+    @MainActor
     func testContentScrolledFromSelectedProgressNegative() {
         // Select the first item.
         pagingController.select(pagingItem: Item(index: 3), animated: false)
@@ -115,10 +118,11 @@ final class PagingControllerTests: XCTestCase {
             )),
             .collectionViewLayout(.invalidateLayoutWithContext(
                 invalidateSizes: false
-      )),
+            )),
         ])
     }
 
+    @MainActor
     func testContentOffsetFromSelectedProgressZero() {
         // Select the first item.
         pagingController.select(pagingItem: Item(index: 3), animated: false)
@@ -135,9 +139,10 @@ final class PagingControllerTests: XCTestCase {
         XCTAssertEqual(collectionViewLayout.calls, [])
         XCTAssertEqual(pagingController.state, PagingState.selected(
             pagingItem: Item(index: 3)
-    ))
+        ))
     }
 
+    @MainActor
     func testContentScrolledNoUpcomingPagingItem() {
         // Prevent the data source from returning an upcoming item.
         dataSource.maxIndexAfter = 3
@@ -157,10 +162,11 @@ final class PagingControllerTests: XCTestCase {
         XCTAssertEqual(actions, [
             .collectionViewLayout(.invalidateLayoutWithContext(
                 invalidateSizes: false
-      )),
+            )),
         ])
     }
 
+    @MainActor
     func testContentScrolledSizeDelegate() {
         // Setup the size delegate.
         sizeDelegate = MockPagingControllerSizeDelegate()
@@ -177,9 +183,10 @@ final class PagingControllerTests: XCTestCase {
         let action = collectionViewLayout.calls.last?.action
         XCTAssertEqual(action, .collectionViewLayout(.invalidateLayoutWithContext(
             invalidateSizes: true
-    )))
+        )))
     }
 
+    @MainActor
     func testContentScrolledNoUpcomingPagingItemAndSizeDelegate() {
         // Prevent the data source from returning an upcoming item.
         dataSource.maxIndexAfter = 3
@@ -204,10 +211,11 @@ final class PagingControllerTests: XCTestCase {
         XCTAssertEqual(actions, [
             .collectionViewLayout(.invalidateLayoutWithContext(
                 invalidateSizes: false
-      )),
+            )),
         ])
     }
 
+    @MainActor
     func testContentScrolledUpcomingItemOutsideVisibleItems() {
         // Select the first item, and scroll to the edge of the
         // collection view a few times to make sure the selected
@@ -259,10 +267,11 @@ final class PagingControllerTests: XCTestCase {
             )),
             .collectionViewLayout(.invalidateLayoutWithContext(
                 invalidateSizes: false
-      )),
+            )),
         ])
     }
 
+    @MainActor
     func testContentScrolledProgressChangedFromPositiveToNegative() {
         // Select an item and enter the scrolling state.
         pagingController.select(pagingItem: Item(index: 1), animated: false)
@@ -280,9 +289,10 @@ final class PagingControllerTests: XCTestCase {
         XCTAssertEqual(collectionViewLayout.calls, [])
         XCTAssertEqual(pagingController.state, PagingState.selected(
             pagingItem: Item(index: 1)
-    ))
+        ))
     }
 
+    @MainActor
     func testContentScrolledProgressChangedFromNegativeToPositive() {
         // Select an item and enter the scrolling state.
         pagingController.select(pagingItem: Item(index: 1), animated: false)
@@ -300,9 +310,10 @@ final class PagingControllerTests: XCTestCase {
         XCTAssertEqual(collectionViewLayout.calls, [])
         XCTAssertEqual(pagingController.state, PagingState.selected(
             pagingItem: Item(index: 1)
-    ))
+        ))
     }
 
+    @MainActor
     func testContentScrolledProgressChangedToZero() {
         // Select an item and enter the scrolling state.
         pagingController.select(pagingItem: Item(index: 1), animated: false)
@@ -320,9 +331,10 @@ final class PagingControllerTests: XCTestCase {
         XCTAssertEqual(collectionViewLayout.calls, [])
         XCTAssertEqual(pagingController.state, PagingState.selected(
             pagingItem: Item(index: 1)
-    ))
+        ))
     }
 
+    @MainActor
     func testContentScrolledProgressChangedSameSign() {
         // Select an item and enter the scrolling state.
         pagingController.select(pagingItem: Item(index: 1), animated: false)
@@ -355,12 +367,13 @@ final class PagingControllerTests: XCTestCase {
             )),
             .collectionViewLayout(.invalidateLayoutWithContext(
                 invalidateSizes: false
-      )),
+            )),
         ])
     }
 
     // MARK: - Select item
 
+    @MainActor
     func testSelectWhileEmpty() {
         // Make sure there is no item before index 0.
         dataSource.minIndexBefore = 0
@@ -375,7 +388,7 @@ final class PagingControllerTests: XCTestCase {
         // Expect it to enter selected state.
         XCTAssertEqual(pagingController.state, PagingState.selected(
             pagingItem: Item(index: 0)
-    ))
+        ))
 
         // Combine the method calls for the collection view,
         // collection view layout and delegate to ensure that
@@ -405,6 +418,7 @@ final class PagingControllerTests: XCTestCase {
         ])
     }
 
+    @MainActor
     func testSelectWhileEmptyAndNoSuperview() {
         // Remove the superview.
         collectionView.superview = nil
@@ -418,9 +432,10 @@ final class PagingControllerTests: XCTestCase {
         XCTAssertEqual(delegate.calls, [])
         XCTAssertEqual(pagingController.state, PagingState.selected(
             pagingItem: Item(index: 0)
-    ))
+        ))
     }
 
+    @MainActor
     func testSelectWhileEmptyAndNoWindow() {
         // Remove the window and make sure we have a superview.
         collectionView.superview = UIView(frame: .zero)
@@ -434,9 +449,10 @@ final class PagingControllerTests: XCTestCase {
         XCTAssertEqual(delegate.calls, [])
         XCTAssertEqual(pagingController.state, PagingState.selected(
             pagingItem: Item(index: 0)
-    ))
+        ))
     }
 
+    @MainActor
     func testSelectItemWhileScrolling() {
         // Select an item and enter the scrolling state.
         pagingController.select(pagingItem: Item(index: 1), animated: false)
@@ -458,6 +474,7 @@ final class PagingControllerTests: XCTestCase {
         XCTAssertEqual(pagingController.state, oldState)
     }
 
+    @MainActor
     func testSelectSameItem() {
         // Select an item and enter the scrolling state.
         pagingController.select(pagingItem: Item(index: 0), animated: false)
@@ -478,6 +495,7 @@ final class PagingControllerTests: XCTestCase {
         XCTAssertEqual(pagingController.state, oldState)
     }
 
+    @MainActor
     func testSelectDifferentItem() {
         // Make sure there is no item before index 0.
         dataSource.minIndexBefore = 0
@@ -503,6 +521,7 @@ final class PagingControllerTests: XCTestCase {
         ))
     }
 
+    @MainActor
     func testSelectPreviousSibling() {
         // Make sure there is no item before index 0.
         dataSource.minIndexBefore = 0
@@ -530,6 +549,7 @@ final class PagingControllerTests: XCTestCase {
         ])
     }
 
+    @MainActor
     func testSelectNextSibling() {
         // Make sure there is no item before index 0.
         dataSource.minIndexBefore = 0
@@ -557,6 +577,7 @@ final class PagingControllerTests: XCTestCase {
         ])
     }
 
+    @MainActor
     func testSelectNotSibling() {
         // Make sure there is no item before index 0.
         dataSource.minIndexBefore = 0
@@ -584,6 +605,7 @@ final class PagingControllerTests: XCTestCase {
         ])
     }
 
+    @MainActor
     func testSelectItemOutsideVisibleItems() {
         // Select the first item, and scroll to the edge of the
         // collection view a few times to make sure the selected
@@ -646,6 +668,7 @@ final class PagingControllerTests: XCTestCase {
 
     // MARK: - Content finished scrolling
 
+    @MainActor
     func testContentFinishedScrollingWithUpcomingItem() {
         // Select an item and enter the scrolling state.
         dataSource.minIndexBefore = 0
@@ -688,6 +711,7 @@ final class PagingControllerTests: XCTestCase {
         ])
     }
 
+    @MainActor
     func testContentFinishedScrollingCollectionViewBeingDragged() {
         // Select an item and enter the scrolling state.
         dataSource.minIndexBefore = 0
@@ -709,6 +733,7 @@ final class PagingControllerTests: XCTestCase {
         XCTAssertEqual(delegate.calls, [])
     }
 
+    @MainActor
     func testContentFinishedScrollingWihtoutUpcomingItem() {
         // Select an item and enter the scrolling state.
         dataSource.minIndexBefore = 0
@@ -729,6 +754,7 @@ final class PagingControllerTests: XCTestCase {
 
     // MARK: - Transition size
 
+    @MainActor
     func testTransitionSize() {
         dataSource.minIndexBefore = 0
         pagingController.select(pagingItem: Item(index: 0), animated: false)
@@ -766,6 +792,7 @@ final class PagingControllerTests: XCTestCase {
         ])
     }
 
+    @MainActor
     func testTransitionSizeWhenSelected() {
         dataSource.minIndexBefore = 0
         pagingController.select(pagingItem: Item(index: 0), animated: false)
@@ -782,6 +809,7 @@ final class PagingControllerTests: XCTestCase {
         XCTAssertEqual(pagingController.state, .selected(pagingItem: Item(index: 0)))
     }
 
+    @MainActor
     func testTransitionSizeWhenScrolling() {
         dataSource.minIndexBefore = 0
         pagingController.select(pagingItem: Item(index: 0), animated: false)
@@ -803,6 +831,7 @@ final class PagingControllerTests: XCTestCase {
 
     // MARK: - Reload data
 
+    @MainActor
     func testReloadData() {
         pagingController.reloadData(around: Item(index: 2))
 
@@ -846,6 +875,7 @@ final class PagingControllerTests: XCTestCase {
 
     // MARK: - Reload menu
 
+    @MainActor
     func testReloadMenu() {
         pagingController.reloadMenu(around: Item(index: 2))
 
