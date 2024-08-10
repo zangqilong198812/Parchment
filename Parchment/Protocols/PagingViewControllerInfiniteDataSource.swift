@@ -8,7 +8,7 @@ import UIKit
 /// the initial `PagingItem` by calling `select(pagingItem:)` on
 /// `PagingViewController`.
 public protocol PagingViewControllerInfiniteDataSource: AnyObject {
-    /// Return the view controller accociated with a `PagingItem`. This
+    /// Return the view controller associated with a `PagingItem`. This
     /// method is only called for the currently selected `PagingItem`,
     /// and its two possible siblings.
     ///
