@@ -17,7 +17,7 @@ public protocol PagingViewControllerDataSource: AnyObject {
     @MainActor
     func numberOfViewControllers(in pagingViewController: PagingViewController) -> Int
 
-    /// Return the view controller accociated with a given index. This
+    /// Return the view controller associated with a given index. This
     /// method is only called for the currently selected `PagingItem`,
     /// and its two possible siblings.
     ///
