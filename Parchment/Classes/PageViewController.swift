@@ -260,6 +260,10 @@ extension PageViewController: PageViewManagerDataSource {
 // MARK: - PageViewManagerDelegate
 
 extension PageViewController: PageViewManagerDelegate {
+    func deinitAfterDisAppear() -> Bool {
+        return delegate?.pageViewControllerCouldDeinit() ?? true
+    }
+    
     func scrollForward() {
         if isRightToLeft {
             switch manager.state {
@@ -366,6 +370,10 @@ extension PageViewController: PageViewManagerDelegate {
     }
 
     func removeViewController(_ viewController: UIViewController) {
+        let couldDeinit = delegate?.pageViewControllerCouldDeinit() ?? true
+        guard couldDeinit else {
+            return
+        }
         viewController.willMove(toParent: nil)
         viewController.removeFromParent()
         viewController.view.removeFromSuperview()

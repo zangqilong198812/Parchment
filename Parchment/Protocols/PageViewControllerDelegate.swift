@@ -56,4 +56,7 @@ public protocol PageViewControllerDelegate: AnyObject {
         destinationViewController: UIViewController,
         transitionSuccessful: Bool
     )
+    
+    @MainActor
+    func pageViewControllerCouldDeinit() -> Bool
 }

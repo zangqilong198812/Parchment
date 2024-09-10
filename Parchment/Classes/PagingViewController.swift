@@ -213,6 +213,8 @@ open class PagingViewController:
     public var visibleItems: PagingItems {
         return pagingController.visibleItems
     }
+    
+    public var isRemoveControllerAfterDisappear: Bool = true
 
     /// The data source is responsible for providing the `PagingItem`s
     /// that are displayed in the menu. The `PagingItem` protocol is
@@ -716,6 +718,10 @@ open class PagingViewController:
                 transitionSuccessful: transitionSuccessful
             )
         }
+    }
+    
+    open func pageViewControllerCouldDeinit() -> Bool {
+        return isRemoveControllerAfterDisappear
     }
 }
 
